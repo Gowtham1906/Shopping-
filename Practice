@@ -1,0 +1,99 @@
+users=[]
+ordered_shoes=[]
+
+class user_details:
+    def __init__(self,name,email,password,phone_number):
+        self.name=name
+        self.email=email
+        self.password=password
+        self.phone_number=phone_number
+        my_dict1={}
+        my_dict1['name']=name
+        my_dict1['email']=email
+        my_dict1['password']=password
+        my_dict1['phone_number']=phone_number
+        users.append(my_dict1)
+    
+    def validate(self,email,password):
+        for user in users:
+            if user['email']==email and user['password']==password:
+                return True
+                break
+            else:
+                print("Invalid User Credentials")
+                return False
+class shoe_item:
+    def __init__(self, email,shoe,size,amount,category,no_shoe):
+        self.shoe=shoe
+        self.size=size
+        self.amount=amount
+        self.category=category
+        self.no_shoe=no_shoe
+        my_dict2={}
+        my_dict2['email']=email
+        my_dict2['shoe']=shoe
+        my_dict2['size']=size
+        my_dict2['amount']=amount
+        my_dict2['category']=category
+        my_dict2['no_shoe']=no_shoe
+        ordered_shoes.append(my_dict2)
+        print(my_dict2)
+
+if __name__== '__main__':
+    while True:
+        print("Choose an option: 1. Register 2. Login 3.Exit")
+        sol=int(input("Enter an Option:"))
+        if(sol==1):
+            name=input("Enter your Name:")
+            email=input("Enter your Email:")
+            password=input("Enter Password:")
+            phone_number=int(input("Enter your Phone Number:"))
+            user=user_details(name,email,password,phone_number)
+            print("You have registered successfully...")
+            temp1=input("Enter your registered mailid:")
+            temp2=input("Enter your password:")
+            val=user.validate(temp1,temp2)
+        elif(sol==2):
+            temp1=input("Enter your registered mailid:")
+            temp2=input("Enter your password:")
+            def validate(email,password):
+                for user in users:
+                    if user['email']==email and user['password']==password:
+                        return True
+                        break
+                    else:
+                        print("Invalid User Credentials")
+                        return False
+            val=validate(temp1, temp2)
+        else:
+            print("Thank you")
+            break
+
+        if val:
+            print("You successfully logged in..")
+            print("Here is the Menu:")
+            print("1.Order a Shoe  2.Exit")
+            choice=int(input("Enter your Choice:"))
+            
+            if(choice==1):
+                print("Enter the shoe model: With Lace, Without Lace")
+                shoe=input("Enter the shoe model:")
+                count=int(input("Enter size:"))
+                print("Choose the Type of shoe: 1.Formal Shoe  2.Casual Shoe")
+                option=int(input("Enter your Choice:"))
+                no_of_shoe=int(input())
+                if(option==1):
+                    category="Formal Shoe"
+                    amount=count*60
+                    amount=amount*no_of_shoe
+
+                else:
+                    category="Casual Shoe"
+                    amount=count*50
+                   
+                print("Ordered Successfully... ")
+                print("Here is Your Bill:")
+                Recipt=shoe_item(email,shoe,count,amount,category,no_of_shoe)
+            else:
+                print("Thank you")
+                break
